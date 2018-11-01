@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./semantic/semantic.min.css">
+    <meta name="google-signin-client_id" content="40553841185-7cc86d15vul99o3algl9viieshnk7d2f.apps.googleusercontent.com">
+    <script   src="https://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>    <link rel="stylesheet" href="./semantic/semantic.min.css">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="./semantic/semantic.min.js"></script>
     <title>Home</title>
@@ -41,8 +43,11 @@
                 <input type="text" placeholder="Search...">
                 <i class="search link icon"></i>
             </div>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <a href="#" onclick="signOut();">Sign out</a>
             </div>
         </div>
+        
     </div>
 
     <div class="ui relaxed divided list">
@@ -157,6 +162,40 @@
         $(".news").click(function(){
             
        })
+    
+    
+
+
+
+
+
+
+
+        function onSignIn(googleUser) {
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log(id_token)
+            $.ajax({
+                method: 'POST',
+                url: "http://localhost:3000/gsignin",
+                data: {
+                    gToken: id_token
+                }
+            })
+            .done(jwt => {
+                console.log(jwt.token, 'ini jwt token');
+                localStorage.setItem('token',jwt.token)
+            })
+            .fail(err => {
+                console.log(err);
+            })
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+            console.log('User signed out.');
+            });
+        }
     </script>
 </body>
 </html>
