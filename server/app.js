@@ -15,6 +15,7 @@ const port = process.env.PORT || 3000
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var signinRouter = require('./routes/signIn');
+var lastfmRouter = require('./routes/lastFm');
 var newsRouter = require('./routes/news');
 
 var app = express();
@@ -34,6 +35,7 @@ app.use(cors())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/gsignin', signinRouter)
+app.use('/last-fm', lastfmRouter)
 app.use('/news', newsRouter);
 
 // catch 404 and forward to error handler
