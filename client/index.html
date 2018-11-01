@@ -26,10 +26,10 @@
 
 
     <div class="ui pointing menu">
-        <a class="item">
-            Event
+        <a class="item list-tv">
+            TV
         </a>
-        <a class="item news">
+        <a class="item list-news" >
             News
         </a>
         <a class="item" >
@@ -38,12 +38,16 @@
         <div class="right menu">
             <div class="item">
             <div class="ui transparent icon input">
-                <input type="text" placeholder="Search...">
+                <input type="text" id="search" placeholder="Search...">
                 <i class="search link icon"></i>
             </div>
             </div>
         </div>
     </div>
+
+    
+
+    
 
     <div class="ui relaxed divided list">
             
@@ -51,25 +55,11 @@
             <table class="ui fixed table">
                     <thead>
                       <tr><th>Name</th>
-                      <th>Title</th>
-                      <th>Description</th>
+                      <th>Country</th>
+                      <th class="des">Description</th>
                     </tr></thead>
                     <tbody id="news">
-                      <tr>
-                        <td>John</td>
-                        <td>Approved</td>
-                        <td>John is an interesting boy but sometimes you don't really have enough room to describe everything you'd like</td>
-                      </tr>
-                      <tr>
-                        <td>Jamie</td>
-                        <td>Approved</td>
-                        <td>Jamie is a kind girl but sometimes you don't really have enough room to describe everything you'd like</td>
-                      </tr>
-                      <tr>
-                        <td>Jill</td>
-                        <td>Denied</td>
-                        <td>Jill is an alright girl but sometimes you don't really have enough room to describe everything you'd like</td>
-                      </tr>
+                      
                     </tbody>
                   </table>
         </div>
@@ -77,8 +67,8 @@
 
     <div class="ui statistics">
             <div class="statistic">
-              <div class="value">
-                22
+              <div class="value length-art">
+                
               </div>
               <div class="label">
                 Articles
@@ -109,14 +99,78 @@
               </div>
             </div>
         </div>
-        <i class="cn flag"></i>
-    <button id="test">Test</button>
-    <div id=content>
-
-    </div>
-    
-    
     <script>
+        // $("#search").keyup(function() {
+        //     var input = $("#search").val()
+        //     console.log(input)
+        //     $.ajax({
+        //         method: "GET",
+        //         url: "http://localhost:4000/news/all-source",
+        //     })
+        //     .done(function(data){
+        //         for(let i = 0;i < data.sources.length;i++){
+        //         if (data.sources[i].description.indexOf(input) !== -1) {
+        //             console.log('masuk pakeko')
+        //             $("#news").append(`<tr>
+        //                 <td><strong>${data.sources[i].name}</strong></td>
+        //                 <td>${data.sources[i].country}</td>
+        //                 <td>${data.sources[i].description}</td>
+        //                 </tr>`)
+                    
+        //         }
+                    
+        //     }
+        //     })
+        //     .fail(function(err){
+        //         console.log(err)
+        //     })
+            
+            
+        // })
+
+        
+        $(".list-news").click(function(){ 
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:4000/news/all-source",
+            })
+            .done(function(data){
+                for(let i = 0;i < data.sources.length;i++){
+                    $("#news").append(`<tr>
+                        <td><strong>${data.sources[i].name}</strong></td>
+                        <td>${data.sources[i].country}</td>
+                        <td>${data.sources[i].description}</td>
+                        </tr>`)
+                    
+                }
+                
+            })
+            .fail(function(){
+                console.log('error')
+            })
+        })
+
+        $(".list-tv").click(function(){ 
+            $.ajax({
+                method: "GET",
+                url: "http://localhost:4000/news/all-source",
+            })
+            .done(function(data){
+                for(let i = 0;i < data.sources.length;i++){
+                    $("#news").append(`<tr>
+                        <td><strong>${data.sources[i].name}</strong></td>
+                        <td>${data.sources[i].country}</td>
+                        <td>${data.sources[i].description}</td>
+                        </tr>`)
+                    
+                }
+                
+            })
+            .fail(function(){
+                console.log('error')
+            })
+        })
+
 
         $(document).ready(function(){
             $.ajax({
@@ -124,13 +178,21 @@
                 url: "http://localhost:4000/news/all-source",
             })
             .done(function(data){
-               console.log(data)
-                
+                const countNews = data.sources.length
+                $(".length-art").text(countNews)
             })
-            .fail(function(){
-                console.log('error')
+            .fail(function(err){
+                console.log(err)
             })
         })
+        
+
+
+         
+                    
+            
+
+        
 
         //     function getRepo(username){
         //     $.ajax({
@@ -154,9 +216,9 @@
         //         })
         //    }
         
-        $(".news").click(function(){
+    //     $(".news").click(function(){
             
-       })
+    //    })
     </script>
 </body>
 </html>
