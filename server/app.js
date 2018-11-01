@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 require('dotenv').config()
 const cors = require('cors')
 const mongoose = require('mongoose')
@@ -13,14 +14,16 @@ const port = process.env.PORT || 3000
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var signinRouter = require('./routes/signIn')
+var signinRouter = require('./routes/signIn');
+var newsRouter = require('./routes/news');
 
 var app = express();
-
+require('dotenv').config()
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,6 +34,7 @@ app.use(cors())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/gsignin', signinRouter)
+app.use('/news', newsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
