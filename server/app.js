@@ -7,7 +7,7 @@ var cors = require('cors')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var lastfmRouter = require('./routes/lastFm')
+var lastfmRouter = require('./routes/lastFm');
 
 var newsRouter = require('./routes/news');
 var app = express();
