@@ -4,8 +4,6 @@ const NewsController = require('../controllers/NewsController')
 /* GET users listing. */
 router.get('/all-source', NewsController.allSource )
 
-router.get('/', function(req, res){
-  res.send('sahjflasfkj')
-})
+// router.get('/', NewsController)
 
 module.exports = router;

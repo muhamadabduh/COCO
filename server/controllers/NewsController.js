@@ -6,7 +6,7 @@ class News {
             url: `https://newsapi.org/v2/sources?`,
             headers: {
             'User-Agent': 'request',
-            'Authorization' : `token ${process.env.NEWS_TOKEN}`
+            'Authorization' : `token fd8951d68d4142a5b510b751a79e25a0`
             },
             json : true
         }
@@ -15,6 +15,8 @@ class News {
             res.status(200).json(body)
         })
     }
+
+    
 }
 
 module.exports = News
