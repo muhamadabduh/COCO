@@ -4,6 +4,7 @@ const client = require('twilio')(accountSid, authToken);
 
 class TwilioController {
     static notifyMe(req, res){
+        console.log(req.body.notification, '=====')
         client.messages
             .create({
                 body: `${req.body.notification}`,
@@ -16,12 +17,10 @@ class TwilioController {
                 })
             })
             .catch(err=>{
-                console.log(err)
+                console.log
             }) 
             .done();
     }
 }
 
 module.exports = TwilioController
-
-
