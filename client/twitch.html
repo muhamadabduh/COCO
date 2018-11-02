@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Search Game
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" id="searchGame">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 id="HEADER"></h1>
+        <div class="row">
+
+
+        </div>
+
+        <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">INI LABEL</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe id="frame" src="" height="500px" width="100%" frameborder="<frameborder>" scrolling="<scrolling>" allowfullscreen="<allowfullscreen>">
+                        </iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="closebtn" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script>
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:4000/twitch/home"
+        })
+            .done(data => {
+                $('#HEADER').html('Featured')
+                $.each(data.featured, function (index, value) {
+                    $('.row').append(`<div id="fitur"> <div class="col-sm-6 col-md-3">
+                      <div class="thumbnail" style="height: 500px; padding-top: 20px">
+                        <img src="${value.stream.preview.medium}" alt="...">
+                        <div class="caption">
+                          <h3>Game: ${value.stream.game}</h3>
+                          <h5>by: ${value.stream.channel.name}</h5>
+                          <p>${value.stream.channel.description}</p>
+                          <p> Viewers: ${value.stream.viewers}</p>
+                          <p><a data-toggle="modal" data-target="#basicModal" href="" class="btn btn-primary namePlayer" role="button" id="${value.stream.channel.name}">View</a></p>
+                        </div>
+                      </div>
+                    </div>
+                    </div>`)
+                })
+
+                $('.namePlayer').click(function () {
+                    var link = "https://player.twitch.tv/?channel=" + $(this).attr('id')
+                    $('#frame').attr('src', link)
+                    $('#myModalLabel').text($(this).attr('id'))
+                })
+                $('#closebtn').click(function () {
+                    $('#frame').attr('src', '')
+                })
+            })
+
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:4000/twitch/top"
+        })
+            .done(function (data) {
+                // console.log(data)
+                $.each(data.top, function (index, value) {
+                    $('#searchGame').append(
+                        `<li id="${value.game.name}" class="topGames">
+                                <a>${value.game.name}</a>
+                    </li>`
+                    )
+                })
+
+                $('.topGames').click(function () {
+
+                    let selector = $(this).attr('id')
+                    $('#HEADER').html(selector)
+                    let searchURL = "http://localhost:4000/twitch/search/" + selector
+                    $.ajax({
+                        method: "GET",
+                        url: searchURL
+                    })
+                        .done(function (data) {
+                            $('#fitur').hide()
+                            let template = ''
+                            $.each(data.streams, function (index, value) {
+                              template += ` <div class="col-sm-6 col-md-3">
+                                    <div class="thumbnail" style="height: 500px; padding-top: 20px">
+                                        <img src="${value.preview.medium}" alt="...">
+                                        <div class="caption">
+                                        <h3>Game: ${value.game}</h3>
+                                        <h5>by: ${value.channel.name}</h5>
+                                        <p>${value.channel.description}</p>
+                                        <p> Viewers: ${value.viewers}</p>
+                                        <p><a data-toggle="modal" data-target="#basicModal" href="" class="btn btn-primary namePlayer" role="button" id="${value.channel.name}">View</a></p>
+                                        </div>
+                                    </div>
+                                    </div>`
+                            })
+                            $(".row").html(template)
+                            $('.namePlayer').click(function () {
+                                var link = "https://player.twitch.tv/?channel=" + $(this).attr('id')
+                                $('#frame').attr('src', link)
+                                $('#myModalLabel').text($(this).attr('id'))
+                            })
+                            $('#closebtn').click(function () {
+                                $('#frame').attr('src', '')
+                            })
+                        })
+                })
+            })
+    </script>
+</body>
+
+</html>
