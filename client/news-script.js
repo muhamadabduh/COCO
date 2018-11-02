@@ -39,6 +39,7 @@ $(".list-tv").click(function(){
                     <td>${data.sources[i].description}</td>
                     </tr>`)
             }
+            count++
         }
     })
     .fail(function(){
