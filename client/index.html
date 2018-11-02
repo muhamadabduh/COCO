@@ -110,26 +110,39 @@
             </div>
         </div>
         <i class="cn flag"></i>
-    <button id="test">Test</button>
+
     <div id=content>
 
     </div>
+
+    
+      <!-- <button id="notify-me">twilio</button> -->
+      <div id="form-twilio">
+        <p class="notif" style="display : none">success send notification</p>
+        <input type="text" name="notification" id="notification">
+        <input type="text" name="phone" id="phone">
+        <input type="submit" value="send whatsapp" id="notify-me">
+      </div>
     
     
+    <script src="./twilio-script.js"></script>
     <script>
+      
+      
+
 
         $(document).ready(function(){
-            $.ajax({
-                method: "GET",
-                url: "http://localhost:4000/news/all-source",
-            })
-            .done(function(data){
-               console.log(data)
-                
-            })
-            .fail(function(){
-                console.log('error')
-            })
+          $.ajax({
+              method: "GET",
+              url: "http://localhost:4000/news/all-source",
+          })
+          .done(function(data){
+              console.log(data)
+              
+          })
+          .fail(function(){
+              console.log('error')
+          })
         })
 
         //     function getRepo(username){
