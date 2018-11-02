@@ -1,180 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="./semantic/semantic.min.css">
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-    crossorigin="anonymous"></script>
-  <script src="./semantic/semantic.min.js"></script>
-  <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-client_id" content="40553841185-7cc86d15vul99o3algl9viieshnk7d2f.apps.googleusercontent.com">
+    <script   src="https://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>    <link rel="stylesheet" href="./semantic/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="./semantic/semantic.min.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+    <title>Home</title>
 </head>
-
 <body>
-  <div class="ui icon message">
-    <i class="notched circle loading icon"></i>
-    <div class="content">
-      <div class="header">
-        COCO
-      </div>
-      <p>We're fetching that content for you.</p>
-    </div>
-  </div>
-
-  <div id="message">
-
-  </div>
-
-
-  <div class="ui pointing menu">
-    <a class="item">
-      Event
-    </a>
-    <a class="item news">
-      News
-    </a>
-    <a class="item">
-      Food
-    </a>
-    <div class="right menu">
-      <div class="item">
-        <div class="ui transparent icon input">
-          <input type="text" placeholder="Search...">
-          <i class="search link icon"></i>
+    <div class="ui icon message">
+        <i class="notched circle loading icon"></i>
+        <div class="content">
+            <div class="header">
+            COCO
+            </div>
+            <p>We're fetching that content for you.</p>
         </div>
-      </div>
     </div>
-  </div>
 
-  <div class="ui relaxed divided list">
-
-
-    <table class="ui fixed table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Title</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody id="news">
-        <tr>
-          <td>John</td>
-          <td>Approved</td>
-          <td>John is an interesting boy but sometimes you don't really have enough room to describe everything you'd like</td>
-        </tr>
-        <tr>
-          <td>Jamie</td>
-          <td>Approved</td>
-          <td>Jamie is a kind girl but sometimes you don't really have enough room to describe everything you'd like</td>
-        </tr>
-        <tr>
-          <td>Jill</td>
-          <td>Denied</td>
-          <td>Jill is an alright girl but sometimes you don't really have enough room to describe everything you'd like</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div id="message">
+        
+    </div>
 
 
-  <div class="ui statistics">
-    <div class="statistic">
-      <div class="value">
-        22
-      </div>
-      <div class="label">
-        Articles
-      </div>
+    <div class="ui pointing menu">
+        <a class="item list-tv">
+            Food
+        </a>
+        <a class="item list-news" >
+            News
+        </a>
+        <a class="item" href="./twitch.html" >
+            TV
+        </a>
+        <div class="right menu">
+            <div class="item">
+            <div class="ui transparent icon input">
+                <input type="text" id="search" placeholder="Search...">
+                <i class="search link icon"></i>
+            </div>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <a href="#" onclick="signOut();">Sign out</a>
+            </div>
+        </div>
+        
     </div>
-    <div class="statistic">
-      <div class=" value">
-        1000
-      </div>
-      <div class="label">
-        Contributiors
-      </div>
-    </div>
-    <div class="statistic">
-      <div class="value">
-        <i class="plane icon"></i> 5
-      </div>
-      <div class="label">
-        Flights
-      </div>
-    </div>
-    <div class="statistic">
-      <div class="value">
-        5
-      </div>
-      <div class="label">
-        Team Members
-      </div>
-    </div>
-  </div>
-  <i class="cn flag"></i>
-  <button id="test">Test</button>
-  <div id=content>
-  </div>
 
-
-  <div class="ui statistics">
-    <div class="statistic">
-      <div class="value length-art">
-
-      </div>
-      <div class="label">
-        Articles
-      </div>
-    </div>
-    <div class="statistic">
-      <div class=" value">
-        1000
-      </div>
-      <div class="label">
-        Contributiors
-      </div>
-    </div>
-    <div class="statistic">
-      <div class="value">
-        <i class="plane icon"></i> 5
-      </div>
-      <div class="label">
-        Flights
-      </div>
-    </div>
-    <div class="statistic">
-      <div class="value">
-        5
-      </div>
-      <div class="label">
-        Team Members
-      </div>
-    </div>
-    <i class="cn flag"></i>
-
-    <div id='content'>
-
-    </div>
     <div id="form-twilio">
-      <p class="notif" style="display : none">success send notification</p>
-      <input type="text" name="notification" id="notification">
-      <input type="text" name="phone" id="phone">
-      <input type="submit" value="send whatsapp" id="notify-me">
+        <p class="notif" style="display : none">success send notification</p>
+        <input type="text" name="notification" id="notification">
+        <input type="text" name="phone" id="phone">
+        <input type="submit" value="send whatsapp" id="notify-me">
+      </div>
+
+    <button id="authorize_button" style="display: none;">Authorize</button>
+    <button id="signout_button" style="display: none;">Sign Out</button>
+
+    <pre id="content"></pre>
+
+    
+
+    <div class="ui relaxed divided list">
+            
+
+            <table class="ui fixed table">
+                    <thead>
+                      <tr><th>Name</th>
+                      <th>Country</th>
+                      <th class="des">Description</th>
+                    </tr></thead>
+                    <tbody id="news">
+                      
+                    </tbody>
+                  </table>
+        </div>
+
+
+    <div class="ui statistics">
+        <div class="statistic">
+            <div class="value length-art">
+            
+            </div>
+            <div class="label">
+            Articles
+            </div>
+        </div>
+        <div class="statistic">
+            <div class=" value">
+            1000
+            </div>
+            <div class="label">
+            Contributiors
+            </div>
+        </div>
+        <div class="statistic">
+            <div class="value">
+            <i class="plane icon"></i> 5
+            </div>
+            <div class="label">
+            Flights 
+            </div>
+        </div>
+        <div class="statistic">
+            <div class="value">
+            5 
+            </div>
+            <div class="label">
+            Team Members
+            </div>
+        </div>
     </div>
-  </div>
+
+    
+    <div>Last Fm Top Tracks</div>
+    <table border="1"> 
+        <thead>
+            <tr>
+                <th>Artist Name</th>
+                <th>Song</th>
+                <th>Listeners</th>
+                <th>Playcount</th>
+            </tr>
+        </thead>
+        <tbody id="lastFm"></tbody>
+    </table>
+
+    <td><a href=""></a></td>
 
 
-  <div>Top Tracks</div>
-  <script src="./twilio-script.js"></script>
-  <script src="lastFm-script.js"></script>
-  <script src="news-script.js"></script>
-  <script src="gsignin-script.js"></script>
-  <script src="gCalendar-script.js"></script>
-
-
+    <div>Top Tracks</div>
+    <script src="lastFm-script.js"></script>
+    <script src="news-script.js"></script>
+    <script src="gsignin-script.js"></script>
+    <script src="gCalendar-script.js"></script>
+    <script src="twilio-script.js"></script>
 </body>
-
 </html>

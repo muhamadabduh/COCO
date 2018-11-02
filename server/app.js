@@ -7,6 +7,7 @@ const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
 
+
 require('dotenv').config()
 const cors = require('cors')
 const mongoose = require('mongoose')
@@ -21,6 +22,7 @@ var signinRouter = require('./routes/signIn');
 var lastfmRouter = require('./routes/lastFm');
 var newsRouter = require('./routes/news');
 var twitchRouter = require('./routes/twitch')
+var notifyRouter = require('./routes/twilio')
 
 var app = express();
 require('dotenv').config()
@@ -44,6 +46,10 @@ app.use('/gsignin', signinRouter)
 app.use('/last-fm', lastfmRouter)
 app.use('/news', newsRouter);
 app.use('/twitch', twitchRouter)
+// app.use('/notify', (req,res)=>{
+//   console.log(req.body)
+// })
+app.use('/notify', notifyRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
