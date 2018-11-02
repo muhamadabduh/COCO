@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./semantic/semantic.min.css">
+    <meta name="google-signin-client_id" content="40553841185-7cc86d15vul99o3algl9viieshnk7d2f.apps.googleusercontent.com">
+    <script   src="https://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>    <link rel="stylesheet" href="./semantic/semantic.min.css">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="./semantic/semantic.min.js"></script>
     <title>Home</title>
@@ -41,8 +43,11 @@
                 <input type="text" id="search" placeholder="Search...">
                 <i class="search link icon"></i>
             </div>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <a href="#" onclick="signOut();">Sign out</a>
             </div>
         </div>
+        
     </div>
 
     
@@ -66,159 +71,40 @@
 
 
     <div class="ui statistics">
-            <div class="statistic">
-              <div class="value length-art">
-                
-              </div>
-              <div class="label">
-                Articles
-              </div>
+        <div class="statistic">
+            <div class="value length-art">
+            
             </div>
-            <div class="statistic">
-              <div class=" value">
-                1000
-              </div>
-              <div class="label">
-                Contributiors
-              </div>
-            </div>
-            <div class="statistic">
-              <div class="value">
-                <i class="plane icon"></i> 5
-              </div>
-              <div class="label">
-                Flights 
-              </div>
-            </div>
-            <div class="statistic">
-              <div class="value">
-                5 
-              </div>
-              <div class="label">
-                Team Members
-              </div>
+            <div class="label">
+            Articles
             </div>
         </div>
-    <script>
-        // $("#search").keyup(function() {
-        //     var input = $("#search").val()
-        //     console.log(input)
-        //     $.ajax({
-        //         method: "GET",
-        //         url: "http://localhost:4000/news/all-source",
-        //     })
-        //     .done(function(data){
-        //         for(let i = 0;i < data.sources.length;i++){
-        //         if (data.sources[i].description.indexOf(input) !== -1) {
-        //             console.log('masuk pakeko')
-        //             $("#news").append(`<tr>
-        //                 <td><strong>${data.sources[i].name}</strong></td>
-        //                 <td>${data.sources[i].country}</td>
-        //                 <td>${data.sources[i].description}</td>
-        //                 </tr>`)
-                    
-        //         }
-                    
-        //     }
-        //     })
-        //     .fail(function(err){
-        //         console.log(err)
-        //     })
-            
-            
-        // })
-
-        
-        $(".list-news").click(function(){ 
-            $.ajax({
-                method: "GET",
-                url: "http://localhost:4000/news/all-source",
-            })
-            .done(function(data){
-                for(let i = 0;i < data.sources.length;i++){
-                    $("#news").append(`<tr>
-                        <td><strong>${data.sources[i].name}</strong></td>
-                        <td>${data.sources[i].country}</td>
-                        <td>${data.sources[i].description}</td>
-                        </tr>`)
-                    
-                }
-                
-            })
-            .fail(function(){
-                console.log('error')
-            })
-        })
-
-        $(".list-tv").click(function(){ 
-            $.ajax({
-                method: "GET",
-                url: "http://localhost:4000/news/all-source",
-            })
-            .done(function(data){
-                for(let i = 0;i < data.sources.length;i++){
-                    $("#news").append(`<tr>
-                        <td><strong>${data.sources[i].name}</strong></td>
-                        <td>${data.sources[i].country}</td>
-                        <td>${data.sources[i].description}</td>
-                        </tr>`)
-                    
-                }
-                
-            })
-            .fail(function(){
-                console.log('error')
-            })
-        })
-
-
-        $(document).ready(function(){
-            $.ajax({
-                method: "GET",
-                url: "http://localhost:4000/news/all-source",
-            })
-            .done(function(data){
-                const countNews = data.sources.length
-                $(".length-art").text(countNews)
-            })
-            .fail(function(err){
-                console.log(err)
-            })
-        })
-        
-
-
-         
-                    
-            
-
-        
-
-        //     function getRepo(username){
-        //     $.ajax({
-        //             method: "GET",
-        //             url: `http://localhost:3000/users/repo/${username}`,
-        //         })
-        //         .done(function(data){
-        //             $("#star").empty()
-        //             data.forEach(element => {
-        //                 $("#star").append(`<tr><td><strong>${element.owner.login}/
-        //                     ${element.name}</strong><br>${element.description}  
-        //                     <br><button onclick="detail()" id="detail" class="btn btn-success">Detail<button> 
-        //                     </td>
-        //                     </tr>
-        //                 `)
-        //             });
-        //         })
-        //         //harus rubah key di elementnya karena data dari query repo by username
-        //         .fail(function(){
-                    
-        //         })
-        //    }
-        
-    //     $(".news").click(function(){
-            
-    //    })
-    </script>
+        <div class="statistic">
+            <div class=" value">
+            1000
+            </div>
+            <div class="label">
+            Contributiors
+            </div>
+        </div>
+        <div class="statistic">
+            <div class="value">
+            <i class="plane icon"></i> 5
+            </div>
+            <div class="label">
+            Flights 
+            </div>
+        </div>
+        <div class="statistic">
+            <div class="value">
+            5 
+            </div>
+            <div class="label">
+            Team Members
+            </div>
+        </div>
+    </div>
+    <script src="news-script.js"></script>
+    <script src="gsignin-script.js"></script>
 </body>
 </html>
