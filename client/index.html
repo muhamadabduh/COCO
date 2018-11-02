@@ -9,6 +9,10 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>    <link rel="stylesheet" href="./semantic/semantic.min.css">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="./semantic/semantic.min.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
     <title>Home</title>
 </head>
 <body>
@@ -50,7 +54,12 @@
         
     </div>
 
-    
+    <p>Google Calendar API Quickstart</p>
+
+    <button id="authorize_button" style="display: none;">Authorize</button>
+    <button id="signout_button" style="display: none;">Sign Out</button>
+
+    <pre id="content"></pre>
 
     
 
@@ -104,7 +113,27 @@
             </div>
         </div>
     </div>
+
+    
+    <div>Last Fm Top Tracks</div>
+    <table border="1"> 
+        <thead>
+            <tr>
+                <th>Artist Name</th>
+                <th>Song</th>
+                <th>Listeners</th>
+                <th>Playcount</th>
+            </tr>
+        </thead>
+        <tbody id="lastFm"></tbody>
+    </table>
+
+    <td><a href=""></a></td>
+
+    <div>Top Tracks</div>
+    <script src="lastFm-script.js"></script>
     <script src="news-script.js"></script>
     <script src="gsignin-script.js"></script>
+    <script src="gCalendar-script.js"></script>
 </body>
 </html>
