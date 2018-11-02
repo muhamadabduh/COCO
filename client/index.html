@@ -118,48 +118,62 @@
   <button id="test">Test</button>
   <div id=content>
   </div>
-  <script>
 
-    $(document).ready(function () {
-      $.ajax({
-        method: "GET",
-        url: "http://localhost:4000/news/all-source",
-      })
-        .done(function (data) {
-          console.log(data)
 
-        })
-        .fail(function () {
-          console.log('error')
-        })
-    })
+  <div class="ui statistics">
+    <div class="statistic">
+      <div class="value length-art">
 
-    //     function getRepo(username){
-    //     $.ajax({
-    //             method: "GET",
-    //             url: `http://localhost:3000/users/repo/${username}`,
-    //         })
-    //         .done(function(data){
-    //             $("#star").empty()
-    //             data.forEach(element => {
-    //                 $("#star").append(`<tr><td><strong>${element.owner.login}/
-    //                     ${element.name}</strong><br>${element.description}  
-    //                     <br><button onclick="detail()" id="detail" class="btn btn-success">Detail<button> 
-    //                     </td>
-    //                     </tr>
-    //                 `)
-    //             });
-    //         })
-    //         //harus rubah key di elementnya karena data dari query repo by username
-    //         .fail(function(){
+      </div>
+      <div class="label">
+        Articles
+      </div>
+    </div>
+    <div class="statistic">
+      <div class=" value">
+        1000
+      </div>
+      <div class="label">
+        Contributiors
+      </div>
+    </div>
+    <div class="statistic">
+      <div class="value">
+        <i class="plane icon"></i> 5
+      </div>
+      <div class="label">
+        Flights
+      </div>
+    </div>
+    <div class="statistic">
+      <div class="value">
+        5
+      </div>
+      <div class="label">
+        Team Members
+      </div>
+    </div>
+    <i class="cn flag"></i>
 
-    //         })
-    //    }
+    <div id='content'>
 
-    $(".news").click(function () {
+    </div>
+    <div id="form-twilio">
+      <p class="notif" style="display : none">success send notification</p>
+      <input type="text" name="notification" id="notification">
+      <input type="text" name="phone" id="phone">
+      <input type="submit" value="send whatsapp" id="notify-me">
+    </div>
+  </div>
 
-    })
-  </script>
+
+  <div>Top Tracks</div>
+  <script src="./twilio-script.js"></script>
+  <script src="lastFm-script.js"></script>
+  <script src="news-script.js"></script>
+  <script src="gsignin-script.js"></script>
+  <script src="gCalendar-script.js"></script>
+
 </body>
 
 </html>
