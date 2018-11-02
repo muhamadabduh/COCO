@@ -28,10 +28,10 @@
 
 
     <div class="ui pointing menu">
-        <a class="item">
-            Event
+        <a class="item list-tv">
+            TV
         </a>
-        <a class="item news">
+        <a class="item list-news" >
             News
         </a>
         <a class="item" >
@@ -40,7 +40,7 @@
         <div class="right menu">
             <div class="item">
             <div class="ui transparent icon input">
-                <input type="text" placeholder="Search...">
+                <input type="text" id="search" placeholder="Search...">
                 <i class="search link icon"></i>
             </div>
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
@@ -50,152 +50,61 @@
         
     </div>
 
+    
+
+    
+
     <div class="ui relaxed divided list">
             
 
             <table class="ui fixed table">
                     <thead>
                       <tr><th>Name</th>
-                      <th>Title</th>
-                      <th>Description</th>
+                      <th>Country</th>
+                      <th class="des">Description</th>
                     </tr></thead>
                     <tbody id="news">
-                      <tr>
-                        <td>John</td>
-                        <td>Approved</td>
-                        <td>John is an interesting boy but sometimes you don't really have enough room to describe everything you'd like</td>
-                      </tr>
-                      <tr>
-                        <td>Jamie</td>
-                        <td>Approved</td>
-                        <td>Jamie is a kind girl but sometimes you don't really have enough room to describe everything you'd like</td>
-                      </tr>
-                      <tr>
-                        <td>Jill</td>
-                        <td>Denied</td>
-                        <td>Jill is an alright girl but sometimes you don't really have enough room to describe everything you'd like</td>
-                      </tr>
+                      
                     </tbody>
                   </table>
         </div>
 
 
     <div class="ui statistics">
-            <div class="statistic">
-              <div class="value">
-                22
-              </div>
-              <div class="label">
-                Articles
-              </div>
+        <div class="statistic">
+            <div class="value length-art">
+            
             </div>
-            <div class="statistic">
-              <div class=" value">
-                1000
-              </div>
-              <div class="label">
-                Contributiors
-              </div>
-            </div>
-            <div class="statistic">
-              <div class="value">
-                <i class="plane icon"></i> 5
-              </div>
-              <div class="label">
-                Flights 
-              </div>
-            </div>
-            <div class="statistic">
-              <div class="value">
-                5 
-              </div>
-              <div class="label">
-                Team Members
-              </div>
+            <div class="label">
+            Articles
             </div>
         </div>
-        <i class="cn flag"></i>
-    <button id="test">Test</button>
-    <div id=content>
-
+        <div class="statistic">
+            <div class=" value">
+            1000
+            </div>
+            <div class="label">
+            Contributiors
+            </div>
+        </div>
+        <div class="statistic">
+            <div class="value">
+            <i class="plane icon"></i> 5
+            </div>
+            <div class="label">
+            Flights 
+            </div>
+        </div>
+        <div class="statistic">
+            <div class="value">
+            5 
+            </div>
+            <div class="label">
+            Team Members
+            </div>
+        </div>
     </div>
-    
-    
-    <script>
-
-        $(document).ready(function(){
-            $.ajax({
-                method: "GET",
-                url: "http://localhost:4000/news/all-source",
-            })
-            .done(function(data){
-               console.log(data)
-                
-            })
-            .fail(function(){
-                console.log('error')
-            })
-        })
-
-        //     function getRepo(username){
-        //     $.ajax({
-        //             method: "GET",
-        //             url: `http://localhost:3000/users/repo/${username}`,
-        //         })
-        //         .done(function(data){
-        //             $("#star").empty()
-        //             data.forEach(element => {
-        //                 $("#star").append(`<tr><td><strong>${element.owner.login}/
-        //                     ${element.name}</strong><br>${element.description}  
-        //                     <br><button onclick="detail()" id="detail" class="btn btn-success">Detail<button> 
-        //                     </td>
-        //                     </tr>
-        //                 `)
-        //             });
-        //         })
-        //         //harus rubah key di elementnya karena data dari query repo by username
-        //         .fail(function(){
-                    
-        //         })
-        //    }
-        
-        $(".news").click(function(){
-            
-       })
-    
-    
-
-
-
-
-
-
-
-        function onSignIn(googleUser) {
-            var id_token = googleUser.getAuthResponse().id_token;
-            console.log(id_token)
-            $.ajax({
-                method: 'POST',
-                url: "http://localhost:3000/gsignin",
-                data: {
-                    gToken: id_token
-                }
-            })
-            .done(jwt => {
-                console.log(jwt.token, 'ini jwt token');
-                localStorage.setItem('token',jwt.token)
-            })
-            .fail(err => {
-                console.log(err);
-            })
-        }
-
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-            console.log('User signed out.');
-            });
-        }
-    </script>
+    <script src="news-script.js"></script>
+    <script src="gsignin-script.js"></script>
 </body>
 </html>
